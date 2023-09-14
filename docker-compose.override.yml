@@ -1,0 +1,18 @@
+version: "3.4"
+
+# Development environment override
+services:
+  php:
+    platform: linux/amd64
+    build:
+      context: app
+      target: php_dev
+      dockerfile: ../docker/Dockerfile
+    volumes:
+      - ./:/srv/app
+      - ./docker/php/conf.d/app.dev.ini:/usr/local/etc/php/conf.d/app.dev.ini:ro
+    environment:
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+      PHP_VERSION: "${PHP_VERSION:-7.4}"
+    extra_hosts:
+      - host.docker.internal:host-gateway
