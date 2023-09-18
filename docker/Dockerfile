@@ -24,6 +24,15 @@ RUN apk add --no-cache \
 		file \
 		gettext \
 		git \
+        libqrencode \
+        tesseract-ocr \
+        ghostscript \
+        imagemagick \
+        poppler-utils \
+        tiff \
+        tiff-tools \
+        psmisc \
+        zbar \
 	;
 
 # php extensions installer: https://github.com/mlocati/docker-php-extension-installer
@@ -34,7 +43,18 @@ RUN set -eux; \
 		apcu \
 		intl \
 		opcache \
-		zip \
+        mcrypt \
+        gd \
+        mysqli \
+        pdo_mysql \
+        ldap \
+        imap \
+        soap \
+        ssh2 \
+        apcu \
+        intl \
+        opcache \
+        zip \
     ;
 
 COPY --link docker/php/conf.d/app.ini $PHP_INI_DIR/conf.d/
@@ -46,6 +66,12 @@ COPY --link docker/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
 
 HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
+
+ARG SCANDISK_MOUNT
+ARG SCAN_MOUNT
+
+COPY --chmod=755 --link docker/php/docker-test.sh /opt/docker-test.sh
+RUN /opt/docker-test.sh
 
 COPY --link docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
