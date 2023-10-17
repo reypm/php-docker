@@ -119,3 +119,6 @@ Temporary Items
 *.icloud
 
 .env
+
+### Custom Testing Folders ###
+excluded/

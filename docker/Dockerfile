@@ -1,8 +1,8 @@
 #syntax=docker/dockerfile:1.4
 
-ARG PHP_VERSION
+ARG PHP_IMAGE
 
-FROM php:${PHP_VERSION}-fpm-alpine AS php_upstream
+FROM php:${PHP_IMAGE} AS php_upstream
 FROM mlocati/php-extension-installer:2 AS php_extension_installer_upstream
 FROM composer/composer:2-bin AS composer_upstream
 
