@@ -1,0 +1,25 @@
+{
+  "name": "reypm/php-docker",
+  "description": "LAMP Docker environment",
+  "type": "project",
+  "keywords": [
+    "docker",
+    "lamp"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Reynier Perez",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ComposerJson\\": "../app"
+    }
+  }
+}
