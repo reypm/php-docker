@@ -123,3 +123,5 @@ Temporary Items
 ### Custom Testing Folders ###
 excluded/
 secrets/
+docker/httpd/conf/server.crt
+docker/httpd/conf/server.key
